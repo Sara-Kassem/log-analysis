@@ -9,10 +9,6 @@ DBNAME = 'news'
 
 limit = 3
 
-# Choose the number of authors
-
-authors = 4
-
 # Connect to the database
 
 db = psycopg2.connect(database=DBNAME)
@@ -55,7 +51,7 @@ print("\n--------------------------------------------------"
 
 # Loop in the results to print them seperately as wanted
 
-for i in range(authors):
+for i in range(len(result)):
     print("%s -- %d views" % (result[i][0], result[i][1]))
 
 # Days with more than 1% of requests lead to errors
