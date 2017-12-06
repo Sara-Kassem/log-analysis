@@ -13,7 +13,7 @@ This Project is meant to do **analysis** on a **news database**.
 - [Vagrant **1.9.2**](https://www.vagrantup.com/downloads.html).
 - [Oracle VM VirtualBox **5.1.30**](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1).
 - [PostgreSQL **9.5.10**](https://www.postgresql.org/download/).
-- [newsdata.sql](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) file.
+- [newsdata.zip](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip), make sure you **unzip** this file to extract `newsdata.sql`.
 
 ## Views used in the program:
 
