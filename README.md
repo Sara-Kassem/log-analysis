@@ -45,15 +45,15 @@ CREATE VIEW views AS
     ON title_by_views.title = title_by_author.title;
 ```
 
-**`status`** contains **date**, **success**, **fail**, and **total** requests.
+**`status`** contains **date**, **fail**, and **total** requests.
 
 ```sql
 CREATE VIEW status AS
-  SELECT time::date, count (CASE status WHEN '200 OK' THEN 1 ELSE NULL END) AS success,
-    count (CASE status WHEN '404 NOT FOUND' THEN 1 ELSE NULL END) AS fail,
-    count (*) AS total
-    FROM log
-    GROUP BY time::date;
+  SELECT time::date,
+  count (CASE status WHEN '404 NOT FOUND' THEN 1 ELSE NULL END) AS fail,
+  count (*) AS total
+  FROM log
+  GROUP BY time::date;
 ```
 
 ## Steps for running:

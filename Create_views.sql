@@ -19,7 +19,7 @@ CREATE VIEW views AS
     ON title_by_views.title = title_by_author.title;
 
 CREATE VIEW status AS
-	SELECT time::date, count (CASE status WHEN '200 OK' THEN 1 ELSE NULL END) AS success,
+	SELECT time::date,
     count (CASE status WHEN '404 NOT FOUND' THEN 1 ELSE NULL END) AS fail,
     count (*) AS total
     FROM log
