@@ -56,37 +56,17 @@ CREATE VIEW status AS
     GROUP BY time::date;
 ```
 
-**IMPORTANT!**
-For the code to work correctly you must copy the codes above into the **bottom** of the **newsdata.sql** file.
-
-**You can copy them as a whole from here**:
-
-```sql
-create view titath as select name, title from authors join articles on authors.id = articles.author;
-
-create view titviw as select articles.title, count (log.path) as "Number of views"
-    from articles join log on log.path = concat('/article/', articles.slug)
-    group by articles.title
-    order by "Number of views" desc;
-
-create view views as select name, titviw.title, "Number of views"
-    from titath join titviw on titviw.title = titath.title;
-
-create view status as select time::date, count (case status when '200 OK' then 1 else null end) as success,
-    count (case status when '404 NOT FOUND' then 1 else null end) as fail,
-    count (*) as total from log group by time::date;
-```
-
 ## Steps for running:
 
-1. After installing the above links and **copying the views code** into the **sql** file, start your prefered **command line**.
+1. After installing the above links start your prefered **command line**.
 2. Change your working directory location to the folder containing  the **python** and **sql** files.
-3. Type `vagrant up` in you command line then press **Enter**, this step may take a while if you are running it for the first time.
+3. Type `vagrant up` in your command line then press **Enter**, this step may take a while if it's running for the first time.
 4. When the command line finshes loading type `vagrant ssh`.
 5. Use `cd /vagrant` command to change to `vagrant` directory.
 6. Type this command `psql -d news -f newsdata.sql` to load the **news** database (**Only done once**).
-7. Enter `python reporting_tool.py` then press **Enter**.
-8. **Done!** you result will show up in the command line.
+7. Import the views for the database by typing `psql -d news -f create_views.sql`.
+8. Enter `python reporting_tool.py` then press **Enter**.
+9. **Done!** you result will show up in the command line.
 
 ## Changable Values
 - You can change the **number of most popular articles** as wanted, to do so just open the `reporting_tool.py` file using **any text editor**
@@ -110,4 +90,3 @@ create view status as select time::date, count (case status when '200 OK' then 1
 
   Replace the `1` after the `>` operator in the **second line** with the desired value then **save** and run using the **steps** in the section above.
   In this case the result will be day/s with **percentage of error requests** bigger than your **new value**.
-  
