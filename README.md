@@ -31,9 +31,9 @@ CREATE VIEW title_by_author AS
 ```sql
 CREATE VIEW title_by_views AS
   SELECT articles.title, count (log.path) AS "Number of views"
-    FROM articles JOIN log ON log.path = concat('/article/', articles.slug)
-    GROUP BY articles.title
-    ORDER BY "Number of views" desc;
+  FROM articles JOIN log ON log.path = concat('/article/', articles.slug)
+  GROUP BY articles.title
+  ORDER BY "Number of views" desc;
 ```
 
 **`views`** contains **author names**,  **article titles** and **Number of views** for each one.
@@ -41,8 +41,8 @@ CREATE VIEW title_by_views AS
 ```sql
 CREATE VIEW views AS
   SELECT name, title_by_views.title, "Number of views"
-    FROM title_by_author JOIN title_by_views
-    ON title_by_views.title = title_by_author.title;
+  FROM title_by_author JOIN title_by_views
+  ON title_by_views.title = title_by_author.title;
 ```
 
 **`status`** contains **date**, **fail**, and **total** requests.
