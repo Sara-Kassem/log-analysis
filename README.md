@@ -20,31 +20,40 @@ This Project is meant to do **analysis** on a **news database**.
 **`title_by_author`** contains **author names** and **article titles**.
 
 ```sql
-create view title_by_author as select name, title from authors join articles on authors.id = articles.author;
+CREATE VIEW title_by_author AS
+  SELECT name, title
+  FROM authors JOIN articles
+  ON authors.id = articles.author;
 ```
 
 **`title_by_views`** contains **article titles** and **Number of views** for each one.
 
 ```sql
-create view title_by_views as select articles.title, count (log.path) as "Number of views"
-    from articles join log on log.path = concat('/article/', articles.slug)
-    group by articles.title
-    order by "Number of views" desc;
+CREATE VIEW title_by_views AS
+  SELECT articles.title, count (log.path) AS "Number of views"
+    FROM articles JOIN log ON log.path = concat('/article/', articles.slug)
+    GROUP BY articles.title
+    ORDER BY "Number of views" desc;
 ```
 
 **`views`** contains **author names**,  **article titles** and **Number of views** for each one.
 
 ```sql
-create view views as select name, titviw.title, "Number of views"
-    from titath join titviw on titviw.title = titath.title;
+CREATE VIEW views AS
+  SELECT name, title_by_views.title, "Number of views"
+    FROM title_by_author JOIN title_by_views
+    ON title_by_views.title = title_by_author.title;
 ```
 
 **`status`** contains **date**, **success**, **fail**, and **total** requests.
 
 ```sql
-create view status as select time::date, count (case status when '200 OK' then 1 else null end) as success,
-    count (case status when '404 NOT FOUND' then 1 else null end) as fail,
-    count (*) as total from log group by time::date;
+CREATE VIEW status AS
+  SELECT time::date, count (CASE status WHEN '200 OK' THEN 1 ELSE NULL END) AS success,
+    count (CASE status WHEN '404 NOT FOUND' THEN 1 ELSE NULL END) AS fail,
+    count (*) AS total
+    FROM log
+    GROUP BY time::date;
 ```
 
 **IMPORTANT!**
