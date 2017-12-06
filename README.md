@@ -64,7 +64,7 @@ CREATE VIEW status AS
 4. When the command line finshes loading type `vagrant ssh`.
 5. Use `cd /vagrant` command to change to `vagrant` directory.
 6. Type this command `psql -d news -f newsdata.sql` to load the **news** database (**Only done once**).
-7. Import the views for the database by typing `psql -d news -f create_views.sql`.
+7. Import the views for the database by typing `psql -d news -f create_views.sql` (**Only done once**).
 8. Enter `python reporting_tool.py` then press **Enter**.
 9. **Done!** you result will show up in the command line.
 
