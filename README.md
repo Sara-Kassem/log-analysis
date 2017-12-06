@@ -59,7 +59,7 @@ CREATE VIEW status AS
 ## Steps for running:
 
 1. After installing the above links start your prefered **command line**.
-2. Change your working directory location to the folder containing  the **python** and **sql** files.
+2. Change your working directory location to the folder containing  the **project files**.
 3. Type `vagrant up` in your command line then press **Enter**, this step may take a while if it's running for the first time.
 4. When the command line finshes loading type `vagrant ssh`.
 5. Use `cd /vagrant` command to change to `vagrant` directory.
