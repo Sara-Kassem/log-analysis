@@ -17,16 +17,16 @@ This Project is meant to do **analysis** on a **news database**.
 
 ## Views used in the program:
 
-**`titath`** contains **author names** and **article titles**.
+**`title_by_author`** contains **author names** and **article titles**.
 
 ```sql
-create view titath as select name, title from authors join articles on authors.id = articles.author;
+create view title_by_author as select name, title from authors join articles on authors.id = articles.author;
 ```
 
-**`titviw`** contains **article titles** and **Number of views** for each one.
+**`title_by_views`** contains **article titles** and **Number of views** for each one.
 
 ```sql
-create view titviw as select articles.title, count (log.path) as "Number of views"
+create view title_by_views as select articles.title, count (log.path) as "Number of views"
     from articles join log on log.path = concat('/article/', articles.slug)
     group by articles.title
     order by "Number of views" desc;
