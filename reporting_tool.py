@@ -75,7 +75,7 @@ print("\n-------------------------------------------------------"
 # Loop in the results to print them seperately as wanted
 
 for i in range(len(result)):
-    print("%s -- %.2f views" % (result[i][0], result[i][1]))
+    print("%s -- %.2f%% erros" % (result[i][0], result[i][1]))
 
 # Close the database
 
